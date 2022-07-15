@@ -17,9 +17,9 @@ class ViewController: UIViewController {
     @IBAction private func calculation(_ sender: Any) {
         let firstValue = Float(firstTextField.text ?? "") ?? 0
         let secondValue = Float(secondTextField.text ?? "") ?? 0
-        var result: String = ""
         let segmentNum = didChangeFormula.selectedSegmentIndex
 
+        let result: String
         switch segmentNum {
         case 0:
             result = String(firstValue + secondValue)
@@ -28,9 +28,10 @@ class ViewController: UIViewController {
         case 2:
             result = String(firstValue * secondValue)
         default:
-            result = String(firstValue / secondValue)
             if secondValue == 0 {
                 result = errorText
+            } else {
+                result = String(firstValue / secondValue)
             }
         }
         resultLabel.text = String(result)
